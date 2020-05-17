@@ -1,0 +1,7 @@
+schema: "https://api.graph.cool/simple/v1/cjl5kyymsba5a0192mamppugb"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
