@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import './tailwind/tailwind.generated.css'
 
 const client = new ApolloClient({
   uri: "https://api.graph.cool/simple/v1/cjl5kyymsba5a0192mamppugb",

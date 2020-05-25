@@ -3,8 +3,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { useFilter } from "../hooks/useFilter";
 import { Query } from "../generated/graphql";
 import { ALL_MEMBERS_QUERY } from "../queries/AllMembersQuery";
-import EmailList from "./EmailList";
+import List from "./List";
 import FilterInput from "./FilterInput";
+import EmailItem from "./EmailItem";
 
 export default function EmailContainer() {
   const [filter, setFilter] = useFilter();
@@ -15,13 +16,19 @@ export default function EmailContainer() {
     },
   });
   return (
-    <>
+    <div className="m-4">
       <p>
-        {error ? (
-          <span>error... {error.message}</span>
-        ) : (
-          <EmailList loading={loading} data={data}></EmailList>
-        )}
+        {
+          <List loading={loading} error={!!error}>
+            {data?.allMembers.map((a, i) => {
+              return <EmailItem
+              key={i}
+              user={a}
+              color={data.allMembers.length % 2 === 0 ? "red" : "green"}
+            />
+            })}
+          </List>
+        }
       </p>
       <FilterInput
         label="Email"
@@ -34,6 +41,6 @@ export default function EmailContainer() {
         filterValue="name_contains"
         callback={setFilter}
       />
-    </>
+    </div>
   );
 }
